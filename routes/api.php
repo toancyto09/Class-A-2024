@@ -20,8 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['prefix'=>'tasks','as'=>'tasks.'], function() {
+Route::group(['prefix' => 'tasks', 'as' => 'tasks.'], function () {
     Route::get('/', [TaskController::class, 'index']);
     Route::post('/', [TaskController::class, 'store']);
     Route::get('/{task}', [TaskController::class, 'show']);
+    Route::put('/{task}', [TaskController::class, 'update']);
+    Route::delete('/{task}/destroy', [TaskController::class, 'destroy']);
+    Route::delete('/{task}/delete', [TaskController::class, 'delete']);
+    Route::get('/{task}/restore', [TaskController::class, 'restore']);
 });
+

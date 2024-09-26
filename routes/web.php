@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     // return response()->json(['message' => 'Hello Worldddd!']);
+    return "<h1>Hello World tognoek</h1>";
 });
