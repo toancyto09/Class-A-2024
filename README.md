@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# PUT sử dụng Body - raw
+# PUT nhớ thêm _method=PUT
 # soft delete DELETE:apt/tasks/{id}/delete
 # restore GET:apt/tasks/{id}/restore
 # delete DELETE:apt/tasks/{id}/destroy
