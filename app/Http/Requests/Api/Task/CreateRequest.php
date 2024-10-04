@@ -25,7 +25,8 @@ class CreateRequest extends FormRequest
     {
         return [
             "name" => ['required', 'max:255'],
-            "description" => "required"
+            "description" => 'required',
+            "status" => 'nullable'
         ];
     }
 

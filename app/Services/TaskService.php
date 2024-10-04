@@ -26,4 +26,31 @@ class TaskService {
             return false;
         }
     }
+    public function update($params, $id){
+        try{
+            $task = $this->model::find($id);
+            if(!$task)
+                return false;
+            $task->update($params);
+            return $task;
+        }catch(Exception $ex){
+            Log::error($ex);
+            return false;
+        }
+    }
+    public function delete($id)
+    {
+        try{
+            $task = $this->model::find($id);
+            if(!$task)
+                return false;
+            $task->delete($task);
+        }catch(Exception $ex){
+            log::error($ex);
+            return false;
+        }
+    }
+    public function getAll(){
+        return $this->model::all();
+    }
 }
