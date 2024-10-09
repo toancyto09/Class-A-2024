@@ -26,4 +26,20 @@ class TaskService {
             return false;
         }
     }
-}
+    public function update(Task $task, array $params)
+    {
+        Log::info('Updating task with params:', $params);
+        
+        try {
+            // Sử dụng fill để cập nhật các trường và sau đó save
+            $task->fill($params);
+            $result = $task->save();
+    
+            // Kiểm tra nếu cập nhật thành công
+            return $result ? $task : false;
+        } catch (\Exception $exception) {
+            Log::error('Error occurred during task update', ['exception' => $exception]);
+            return false;
+        }
+    } 
+}    
