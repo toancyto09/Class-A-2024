@@ -26,4 +26,15 @@ class TaskService {
             return false;
         }
     }
+
+    public function update($task, $params)
+    {
+        try {
+            return $task->update($params);
+        } catch (Exception $exception) {
+            Log::error($exception);
+
+            return false;
+        }
+    }
 }
