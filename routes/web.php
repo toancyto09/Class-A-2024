@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,19 @@ use App\Http\Controllers\Web\ProductController;
 |
 */
 
+Route::get('login', [AuthController::class, 'formLogin'])->name('form_login');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
 Route::get('/', function () {
     //return response()->json(['message' => 'Hello World!']);
 });
 
-
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-Route::get('/products/edit/{product}', [ProductController::class, 'edit'])->name('products.edit');
-Route::put('/products/update/{product}', [ProductController::class, 'update'])->name('products.update');
-Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::group(['prefix' => 'products', 'middleware' => 'check_user', 'as' => 'products.'], function () {
+    Route::get('/create', [ProductController::class, 'create'])->name('create');
+    Route::post('/', [ProductController::class, 'store'])->name('store');
+    Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('edit');
+    Route::put('/update/{product}', [ProductController::class, 'update'])->name('update');
+    Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+});

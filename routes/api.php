@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\TaskController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::group(attributes: ['prefix'=>'tasks', 'as'=>'tasks.'], routes: function()
   Route::delete('/{task}', [TaskController::class, 'destroy']);
 });
 
+Route::post('login', action: [AuthController::class, 'login']);
+Route::post('register', action: [AuthController::class, 'register']);
