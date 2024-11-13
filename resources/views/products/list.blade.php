@@ -21,6 +21,33 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
 
         h1 {
             font-size: 2.5rem;
@@ -135,6 +162,29 @@
 <body>
 
 <div class="container">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url('/') }}">Home</a></li>
+                <li><a href="{{ route('products') }}">About</a></li>
+                <li><a href="{{ route('tasks') }}">Services</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
+    
+                @auth
+                    <li><a href="{{ route('profile') }}">Profile</a></li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                @endauth
+            </ul>
+        </nav>
+    </header>
     <h1>Product List</h1>
 
     <!-- Button to create new product -->
